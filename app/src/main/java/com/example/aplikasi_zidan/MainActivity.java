@@ -1,5 +1,6 @@
 package com.example.aplikasi_zidan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -66,16 +67,20 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton rbSelected = findViewById(rbSemesterId);
                 String semester = rbSelected.getText().toString();
 
-                String result = "Registration Success!\n\n" +
-                        "Name\t\t: " + name + "\n" +
-                        "Email\t\t: " + email + "\n" +
-                        "Address\t: " + address + "\n" +
-                        "Jurusan\t: " + jurusan + "\n" +
-                        "Semester\t: " + semester;
+                // 1. Buat object Intent
+                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
 
-                tvResult.setText(result);
-                Toast.makeText(this, "Data Berhasil Disimpan", Toast.LENGTH_SHORT).show();
+                // 2. Masukkan data ke dalam Intent (PutExtra)
+                intent.putExtra("name", name);
+                intent.putExtra("email", email);
+                intent.putExtra("address", address);
+                intent.putExtra("jurusan", jurusan);
+                intent.putExtra("semester", semester);
+
+                // 3. Jalankan Intent
+                startActivity(intent);
             }
+
         });
 
     }
